@@ -125,7 +125,7 @@ const DetailsView = (props) => {
                         fontWeight: "300",
                       }}
                     >
-                      Trusted and audited lending and borrowing platform.
+                      A trusted and audited lending and borrowing platform.
                     </Text>
                   </View>
                 </View>
@@ -159,7 +159,7 @@ const DetailsView = (props) => {
                       }}
                     >
                       A digital currency pegged to the USD. Backed by
-                      over-collateralized assets.
+                      over-collateralized digital assets.
                     </Text>
                   </View>
                 </View>
@@ -176,7 +176,7 @@ const DetailsView = (props) => {
                       }}
                     >
                       A digital currency pegged to the USD. Backed and managed
-                      by the US company Circle.
+                      by the US based company, Circle.
                     </Text>
                   </View>
                 </View>

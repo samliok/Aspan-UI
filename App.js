@@ -9,6 +9,7 @@ import { ACCOUNT_TYPES } from "./views/accounts";
 import * as Withdraw from "./contracts/withdraw";
 import DashboardView from "./views/dashboard/view";
 import { getBlock } from "./contracts/withdraw";
+import DepositView from "./views/details/deposit";
 
 export default function App() {
   async function fetchJSONAsync() {
@@ -17,7 +18,8 @@ export default function App() {
   // could use navigators but this is most simple for now
   const [isSelectingAccount, setIsSelectingAccount] = useState(false);
   const [isAccountDetails, setIsAccountDetails] = useState(false);
-  const [isOnDashboard, setIsOnDashboard] = useState(true);
+  const [isOnDeposit, setIsOnDeposit] = useState(true);
+  const [isOnDashboard, setIsOnDashboard] = useState(false);
   // temporary for now, can pass with navigation
   const temp_name = "Standard Savings";
   const temp_selection = ACCOUNT_TYPES[temp_name];
@@ -29,8 +31,13 @@ export default function App() {
     setIsSelectingAccount(false);
     setIsAccountDetails(true);
   };
-  const completeDeposit = () => {
+  const finishAccount = () => {
     setIsAccountDetails(false);
+    setIsOnDeposit(true);
+  };
+
+  const completeDeposit = () => {
+    setIsOnDeposit(false);
     setIsOnDashboard(true);
   };
 
@@ -51,6 +58,17 @@ export default function App() {
       {isAccountDetails && (
         <View style={styles.container}>
           <DetailsView
+            deposit={() => {
+              finishAccount();
+            }}
+            name={temp_name}
+            account={temp_selection}
+          />
+        </View>
+      )}
+      {isOnDeposit && (
+        <View style={styles.container}>
+          <DepositView
             deposit={() => {
               completeDeposit();
             }}

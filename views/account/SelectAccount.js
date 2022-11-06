@@ -77,8 +77,8 @@ const AccountTypes = (props) => {
             onPress={() => {
               props.next();
             }}
+            color={"#0F9CF3"}
           >
-            {" "}
             View Account Details
           </Button>
         )}

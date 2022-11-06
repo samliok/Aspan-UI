@@ -12,8 +12,8 @@ var accounts = {
       "An account for risk-conscious savers. Your deposit will be converted into the market assets above. Interest is earned from USD lending markets on the blockchain. You can withdraw into your initial deposit asset.",
     risks:
       "Interest rates never go below zero. However, you could lose your initial deposit if: \n \
-      \t The USD lending market is hacked \n \
-      \t The USD blockchain currency loses its value  or is hacked",
+      \t - The USD lending market is hacked \n \
+      \t - The USD blockchain currency loses its value or is \n \t hacked",
     isReady: true,
   },
   "Flexible Saver": {

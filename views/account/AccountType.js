@@ -13,7 +13,7 @@ const Account = (props) => {
     <TouchableOpacity
       style={{
         ...styles.container,
-        backgroundColor: isSelected ? "#4640BA" : "#FFF",
+        backgroundColor: isSelected ? "#0F9CF3" : "#FFF",
         opacity: curr_account.isReady ? 1 : 0.5,
       }}
       onPress={() => {

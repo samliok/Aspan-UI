@@ -9,8 +9,8 @@ const DetailsView = (props) => {
   const name = props.name;
   return (
     <View style={styles.container}>
-      <ScrollView>
-        <View style={styles.info}>
+      <View style={styles.info}>
+        <ScrollView>
           <Text
             style={{
               fontSize: theme.text.title,
@@ -99,19 +99,105 @@ const DetailsView = (props) => {
               </View>
             </View>
           </View>
-        </View>
-
-        <View style={styles.footer}>
+          <View style={{ ...styles.group, paddingTop: 0 }}>
+            <View style={styles.groupHeader}>
+              <View style={styles.item}>
+                <Text
+                  style={{
+                    fontSize: theme.text.body,
+                    textTransform: "uppercase",
+                    fontWeight: "500",
+                  }}
+                >
+                  USD Lending Market
+                </Text>
+              </View>
+              <View style={styles.item}>
+                <View style={{ flexDirection: "row" }}>
+                  <Image
+                    style={{ resizeMode: "contain", height: 30, width: 30 }}
+                    source={require("../../assets/aave.png")}
+                  />
+                  <View style={{ paddingHorizontal: 30 }}>
+                    <Text
+                      style={{
+                        fontSize: theme.text.paragraph,
+                        fontWeight: "300",
+                      }}
+                    >
+                      Trusted and audited lending and borrowing platform.
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View style={{ ...styles.group, paddingTop: 0 }}>
+            <View style={styles.groupHeader}>
+              <View style={styles.item}>
+                <Text
+                  style={{
+                    fontSize: theme.text.body,
+                    textTransform: "uppercase",
+                    fontWeight: "500",
+                  }}
+                >
+                  Market Assets
+                </Text>
+              </View>
+              <View style={styles.item}>
+                <View style={{ flexDirection: "row" }}>
+                  <Image
+                    style={{ resizeMode: "contain", height: 30, width: 30 }}
+                    source={require("../../assets/dai.png")}
+                  />
+                  <View style={{ paddingHorizontal: 30 }}>
+                    <Text
+                      style={{
+                        fontSize: theme.text.paragraph,
+                        fontWeight: "300",
+                      }}
+                    >
+                      A digital currency pegged to the USD. Backed by
+                      over-collateralized assets.
+                    </Text>
+                  </View>
+                </View>
+                <View style={{ flexDirection: "row", paddingVertical: 10 }}>
+                  <Image
+                    style={{ resizeMode: "contain", height: 30, width: 30 }}
+                    source={require("../../assets/usdc.png")}
+                  />
+                  <View style={{ paddingHorizontal: 30 }}>
+                    <Text
+                      style={{
+                        fontSize: theme.text.paragraph,
+                        fontWeight: "300",
+                      }}
+                    >
+                      A digital currency pegged to the USD. Backed and managed
+                      by the US company Circle.
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </ScrollView>
+      </View>
+      <View style={styles.footer}>
+        <View style={styles.footerButton}>
           <Button
             onPress={() => {
               props.deposit();
             }}
+            mode="contained"
+            color={"#0F9CF3"}
           >
-            {" "}
             Open Account
           </Button>
         </View>
-      </ScrollView>
+      </View>
     </View>
   );
 };
@@ -124,6 +210,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "100%",
   },
+  footerButton: {
+    alignContent: "flex-start",
+  },
   stat: {
     paddingTop: 20,
     paddingBottom: 10,
@@ -132,6 +221,7 @@ const styles = StyleSheet.create({
   },
   group: {
     padding: 20,
+    paddingBottom: 0,
   },
   groupHeader: {
     paddingBottom: 15,
@@ -140,15 +230,17 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   footer: {
-    flex: 2,
+    flex: 1,
     width: "100%",
+    flexDirection: "column",
+    paddingTop: 10,
   },
   item: {
     padding: 5,
   },
   info: {
-    flex: 10,
+    flex: 7,
     width: "100%",
-    paddingVertical: 70,
+    paddingTop: 70,
   },
 });

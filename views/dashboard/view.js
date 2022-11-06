@@ -2,9 +2,55 @@ import { StyleSheet, Text, Image, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { IconButton, Button } from "react-native-paper";
 import { theme } from "../..//themes";
+import { useQuery, gql } from "@apollo/client";
+import { ethers } from "ethers";
+import { PRIVATE_KEY } from "../../contracts/constants";
+
 const DashboardView = (props) => {
+  const wallet = new ethers.Wallet(PRIVATE_KEY);
+  console.log(wallet.address);
+
+  const ONE_ETH = ethers.utils.parseEther("1");
+
+  const GET_POSITION = gql`
+    {
+        positions(
+          where: {
+            # TODO: uncomment line below (to get the position of user)
+            # userAddress: "${wallet.address}"
+            active: true
+          }
+        ) {
+        usdcProvided
+        usdcWithdrawn
+        aspanBalance
+      }
+    }
+  `;
+
+  const { data: graphData, error: graphError } = useQuery(GET_POSITION);
+  graphError && console.error(graphError);
+  const position = graphData && graphData.positions[0];
+
+  // TODO: get aspan token price from oracle
+  const aspanTokenPrice = ethers.utils.parseEther("0.99");
+
+  const providedMinWithdrawn =
+    position && String(position.usdcProvided - position.usdcWithdrawn);
+
+  const balance =
+    position &&
+    ethers.BigNumber.from(position.aspanBalance)
+      .mul(aspanTokenPrice)
+      .div(ONE_ETH);
+
+  const ROI_IN_USD =
+    providedMinWithdrawn &&
+    balance &&
+    ethers.utils.formatEther(String(balance.toString() - providedMinWithdrawn));
+
   const name = props.name;
-  const account = props.account;
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -25,7 +71,7 @@ const DashboardView = (props) => {
             }}
             variant="displayLarge"
           >
-            $1,597
+            $ {balance ? ethers.utils.formatEther(balance) : "0"}
           </Text>
           <View
             style={{
@@ -34,7 +80,7 @@ const DashboardView = (props) => {
               justifyContent: "flex-start",
             }}
           >
-            <Text style={{ color: "#2173DF" }}>^ $51</Text>
+            <Text style={{ color: "#2173DF" }}>^ $ {ROI_IN_USD}</Text>
           </View>
         </View>
 

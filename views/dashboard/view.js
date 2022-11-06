@@ -4,7 +4,14 @@ import { IconButton, Button } from "react-native-paper";
 import { theme } from "../..//themes";
 import { useQuery, gql } from "@apollo/client";
 import { ethers } from "ethers";
-import { PRIVATE_KEY } from "../../contracts/constants";
+import {
+  PRIVATE_KEY,
+  USDC_ADDRESS,
+  DAI_ADDRESS,
+  USDT_ADDRESS,
+} from "../../contracts/constants";
+
+import { getCallData } from "../../helpers/getCallData";
 
 const DashboardView = (props) => {
   const wallet = new ethers.Wallet(PRIVATE_KEY);

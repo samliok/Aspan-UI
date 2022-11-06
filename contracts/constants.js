@@ -1,7 +1,8 @@
 // vault contract abi
 exports.VALUT_ABI = [];
 // vault contact address
-exports.VAULT_ADDRESS = "temp value";
+exports.VAULT_ADDRESS = "";
+exports.PRICE_ORACLE_ADDRESS = "";
 
 exports.USDC_ADDRESS = "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174";
 exports.USDT_ADDRESS = "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063";

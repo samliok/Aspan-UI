@@ -11,13 +11,16 @@ import { Button, Divider } from "react-native-paper";
 
 import React, { useState, forwardRef } from "react";
 import { theme } from "../../themes";
+import { doContractThings } from "../../contracts/usdc_call";
 const DepositView = (props) => {
   const account = props.account;
   const name = props.name;
   const [amount, setAmount] = useState(0);
-  const [inBalance, setInBalance] = useState(0);
-  const deposit = () => {
+  const [inBalance, setInBalance] = useState(null);
+
+  const deposit = async () => {
     console.log("yes");
+    await doContractThings();
     // props.deposit()
   };
   return (
@@ -31,7 +34,7 @@ const DepositView = (props) => {
           }}
           variant="displayLarge"
         >
-          Confirm Deposit
+          Confirm Deposit {inBalance}
         </Text>
         <View style={{ paddingTop: 6, width: "90%", alignSelf: "center" }}>
           <Text
@@ -113,8 +116,8 @@ const DepositView = (props) => {
       </View>
       <View style={styles.footer}>
         <Button
-          onPress={() => {
-            deposit();
+          onPress={async () => {
+            await deposit();
           }}
           mode="contained"
           color={"#0F9CF3"}
